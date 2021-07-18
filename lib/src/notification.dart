@@ -178,7 +178,7 @@ class OSNotification extends JSONStringRepresentable {
       this.mutableContent = json['mutableContent'] as bool?;
     if (json.containsKey('category'))
       this.category = json['category'] as String?;
-    if (json.containsKey('badge')) 
+    if (json.containsKey('badge'))
       this.badge = json['badge'] as int?;
     if (json.containsKey('badgeIncrement'))
       this.badgeIncrement = json['badgeIncrement'] as int?;
@@ -208,7 +208,7 @@ class OSNotification extends JSONStringRepresentable {
       this.fromProjectNumber = json['fromProjectNumber'] as String?;
     if (json.containsKey("collapseId"))
       this.collapseId = json['collapseId'] as String?;
-    if (json.containsKey("priority")) 
+    if (json.containsKey("priority"))
       this.priority = json['priority'] as int?;
     if (json.containsKey("androidNotificationId"))
       this.androidNotificationId = json['androidNotificationId'] as int?;
@@ -217,11 +217,15 @@ class OSNotification extends JSONStringRepresentable {
           json['backgroundImageLayout'].cast<String, dynamic>());
     }
     if (json.containsKey('groupedNotifications')) {
-      String jsonGroupedNotifications = json['groupedNotifications'] as String;
-      List jsonList = jsonDecode(jsonGroupedNotifications) as List;
-      this.groupedNotifications = jsonList.map((item) => OSNotification(item)).toList();
+      // String jsonGroupedNotifications = json['groupedNotifications'] as String;
+      // List jsonList = jsonDecode(jsonGroupedNotifications) as List;
+      // this.groupedNotifications = jsonList.map((item) => OSNotification(item)).toList();
+      final dynamic jsonGroupedNotifications = json['groupedNotifications'];
+      final jsonList = jsonDecode(jsonGroupedNotifications.toString()) as List<dynamic>;
+      this.groupedNotifications = jsonList.map((dynamic item) =>
+          OSNotification(item as Map<String, dynamic>)).toList();
     }
-    
+
     // shared parameters
     this.notificationId = json['notificationId'] as String;
 
@@ -229,11 +233,11 @@ class OSNotification extends JSONStringRepresentable {
       this.templateName = json['templateName'] as String?;
     if (json.containsKey('templateId'))
       this.templateId = json['templateId'] as String?;
-    if (json.containsKey('sound')) 
+    if (json.containsKey('sound'))
       this.sound = json['sound'] as String?;
     if (json.containsKey('title'))
       this.title = json['title'] as String?;
-    if (json.containsKey('body')) 
+    if (json.containsKey('body'))
       this.body = json['body'] as String?;
     if (json.containsKey('launchUrl'))
       this.launchUrl = json['launchUrl'] as String?;
